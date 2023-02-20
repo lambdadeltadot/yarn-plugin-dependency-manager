@@ -16,6 +16,7 @@
     "@yarnpkg/plugin-essentials": "^3",
     "@yarnpkg/plugin-git": "^2",
     "clipanion": "^3",
+    "minimatch": "^7",
     "typanion": "^3"
   },
   "devDependencies": {

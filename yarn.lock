@@ -987,6 +987,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"brace-expansion@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "brace-expansion@npm:2.0.1"
+  dependencies:
+    balanced-match: ^1.0.0
+  checksum: a61e7cd2e8a8505e9f0036b3b6108ba5e926b4b55089eeb5550cd04a471fe216c96d4fe7e4c7f995c728c554ae20ddfc4244cad10aef255e72b62930afd233d1
+  languageName: node
+  linkType: hard
+
 "braces@npm:^3.0.2":
   version: 3.0.2
   resolution: "braces@npm:3.0.2"
@@ -2472,6 +2481,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"minimatch@npm:^7":
+  version: 7.0.0
+  resolution: "minimatch@npm:7.0.0"
+  dependencies:
+    brace-expansion: ^2.0.1
+  checksum: caceffe3489e022c7a8421100b3653ba4c03ebff1e704da8aa5d22c500ec679079163c214eeaf25a52840464fad67ab9a606394ef7302775c5d9d152a76b0ecc
+  languageName: node
+  linkType: hard
+
 "minimist@npm:^1.2.0, minimist@npm:^1.2.6":
   version: 1.2.8
   resolution: "minimist@npm:1.2.8"
@@ -3431,6 +3449,7 @@ __metadata:
     eslint-plugin-import: ^2
     eslint-plugin-n: ^15
     eslint-plugin-promise: ^6
+    minimatch: ^7
     typanion: ^3
     type-fest: ^3
     typescript: ~4.9

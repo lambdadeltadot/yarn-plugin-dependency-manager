@@ -1,8 +1,10 @@
 import { Plugin } from '@yarnpkg/core';
 import configuration from './configuration';
+import hooks from './hooks';
 
 const plugin: Plugin = {
-  configuration
+  configuration,
+  hooks
 };
 
 export default plugin;

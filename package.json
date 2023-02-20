@@ -1,0 +1,34 @@
+{
+  "name": "yarn-plugin-dependency-manager",
+  "version": "0.0.0",
+  "main": "index.js",
+  "author": "Darwin Arandilla <lambdadeltadot@gmail.com>",
+  "license": "MIT",
+  "packageManager": "yarn@3.4.1",
+  "scripts": {
+    "build": "builder build plugin",
+    "lint": "eslint . --no-error-on-unmatched-pattern && tsc --noEmit"
+  },
+  "dependencies": {
+    "@yarnpkg/builder": "^3",
+    "@yarnpkg/cli": "^3",
+    "@yarnpkg/core": "^3",
+    "@yarnpkg/plugin-essentials": "^3",
+    "@yarnpkg/plugin-git": "^2",
+    "clipanion": "^3",
+    "typanion": "^3"
+  },
+  "devDependencies": {
+    "@types/eslint": "^8",
+    "@typescript-eslint/eslint-plugin": "^5",
+    "@typescript-eslint/parser": "^5",
+    "eslint": "^8",
+    "eslint-config-semistandard": "^17",
+    "eslint-config-standard": "^17",
+    "eslint-plugin-import": "^2",
+    "eslint-plugin-n": "^15",
+    "eslint-plugin-promise": "^6",
+    "type-fest": "^3",
+    "typescript": "~4.9"
+  }
+}

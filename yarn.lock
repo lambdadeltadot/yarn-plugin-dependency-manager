@@ -218,7 +218,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/semver@npm:^7.1.0, @types/semver@npm:^7.3.12":
+"@types/semver@npm:^7, @types/semver@npm:^7.1.0, @types/semver@npm:^7.3.12":
   version: 7.3.13
   resolution: "@types/semver@npm:7.3.13"
   checksum: 00c0724d54757c2f4bc60b5032fe91cda6410e48689633d5f35ece8a0a66445e3e57fa1d6e07eb780f792e82ac542948ec4d0b76eb3484297b79bd18b8cf1cb0
@@ -3021,7 +3021,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:^7.0.0, semver@npm:^7.1.2, semver@npm:^7.3.7, semver@npm:^7.3.8":
+"semver@npm:^7, semver@npm:^7.0.0, semver@npm:^7.1.2, semver@npm:^7.3.7, semver@npm:^7.3.8":
   version: 7.3.8
   resolution: "semver@npm:7.3.8"
   dependencies:
@@ -3305,13 +3305,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-fest@npm:^3":
-  version: 3.6.0
-  resolution: "type-fest@npm:3.6.0"
-  checksum: 3cb3b27fc1dc69e0a7524041d9d32cfd3786b16591952e0b2b87ca44b53acaed1bf86ee62a7cc3033a55154d44542e8b488d500d1b363d828f62a9fae9d2a043
-  languageName: node
-  linkType: hard
-
 "typed-array-length@npm:^1.0.4":
   version: 1.0.4
   resolution: "typed-array-length@npm:1.0.4"
@@ -3435,6 +3428,7 @@ __metadata:
   resolution: "yarn-plugin-dependency-manager@workspace:."
   dependencies:
     "@types/eslint": ^8
+    "@types/semver": ^7
     "@typescript-eslint/eslint-plugin": ^5
     "@typescript-eslint/parser": ^5
     "@yarnpkg/builder": ^3
@@ -3450,8 +3444,8 @@ __metadata:
     eslint-plugin-n: ^15
     eslint-plugin-promise: ^6
     minimatch: ^7
+    semver: ^7
     typanion: ^3
-    type-fest: ^3
     typescript: ~4.9
   languageName: unknown
   linkType: soft

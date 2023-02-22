@@ -1,7 +1,7 @@
 {
   "name": "yarn-plugin-dependency-manager",
   "version": "0.0.0",
-  "main": "index.js",
+  "main": "sources/index.ts",
   "author": "Darwin Arandilla <lambdadeltadot@gmail.com>",
   "license": "MIT",
   "packageManager": "yarn@3.4.1",
@@ -17,10 +17,12 @@
     "@yarnpkg/plugin-git": "^2",
     "clipanion": "^3",
     "minimatch": "^7",
+    "semver": "^7",
     "typanion": "^3"
   },
   "devDependencies": {
     "@types/eslint": "^8",
+    "@types/semver": "^7",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
     "eslint": "^8",
@@ -29,7 +31,6 @@
     "eslint-plugin-import": "^2",
     "eslint-plugin-n": "^15",
     "eslint-plugin-promise": "^6",
-    "type-fest": "^3",
     "typescript": "~4.9"
   }
 }

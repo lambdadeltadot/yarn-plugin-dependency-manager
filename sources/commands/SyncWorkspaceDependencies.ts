@@ -1,4 +1,4 @@
-import { Project, Workspace, Locator, StreamReport, structUtils, MessageName } from '@yarnpkg/core';
+import { Locator, MessageName, Project, StreamReport, structUtils, Workspace } from '@yarnpkg/core';
 import { stringifyIdent } from '@yarnpkg/core/lib/structUtils';
 import { Command, Option } from 'clipanion';
 import BaseCommand from './BaseCommand';
@@ -16,25 +16,21 @@ class SyncWorkspaceDependencies extends BaseCommand {
     description: 'Sync the version of the packages installed on the each workspace to the dependency version map. Note that this will only sync the packages registered on the dependency version map.',
     examples: [
       [
-        'Sets packages\' latest versions',
-        '$0 dependency set axios react'
+        'Sync all workspaces and packages',
+        '$0 dependency sync'
       ],
       [
-        'Sets packages\' specific versions',
-        '$0 dependency set axios@1.1.3 react@18.2.0'
+        'Sync specific packages only',
+        '$0 dependency sync --package @types/*'
       ],
       [
-        'Sets package\' latest version on the given range',
-        '$0 dependency set axios@^1 react@~18.2'
-      ],
-      [
-        'Update all registered package to latest',
-        '$0 dependency set'
+        'Sync specific workspaces only',
+        '$0 dependency sync @local/*'
       ]
     ]
   });
 
-  packages = Option.Array('-p, --package', {
+  packages = Option.Array('-p,--package', {
     description: 'Whitelist for the packages to update',
     required: false
   });

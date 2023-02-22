@@ -1,12 +1,13 @@
-import { Project, Workspace, Locator, StreamReport, structUtils, MessageName, Descriptor, Configuration } from '@yarnpkg/core';
+import { Configuration, Descriptor, Locator, MessageName, Project, StreamReport, structUtils, Workspace } from '@yarnpkg/core';
 import { Command, Option } from 'clipanion';
+import { applyCascade, isAtLeast, isAtMost, isInteger, isNumber } from 'typanion';
 import BaseCommand from './BaseCommand';
+import createFormatString from './utils/createFormatString';
+import createRestrictDependencyVersionExcludesChecker from './utils/createRestrictDependencyVersionExcludesChecker';
 import parsePackageList from './utils/parsePackageList';
 import reportProgressViaCounter from './utils/reportProgressViaCounter';
-import { applyCascade, isNumber, isInteger, isAtMost, isAtLeast } from 'typanion';
-import createRestrictDependencyVersionExcludesChecker from './utils/createRestrictDependencyVersionExcludesChecker';
 import resolveSatifyingVersion from './utils/resolveSatifyingVersion';
-import createFormatString from './utils/createFormatString';
+import yarnSpawn from './utils/yarnSpawn';
 
 class SetDependencyCommand extends BaseCommand {
   static override paths = [
@@ -36,7 +37,17 @@ class SetDependencyCommand extends BaseCommand {
     ]
   });
 
-  parallel = Option.String('-p, --parallel', {
+  sync = Option.Boolean('-s,--sync', {
+    description: 'Determine whether to run `dependency sync` with the dependency set by this command.',
+    required: false
+  });
+
+  workspaces = Option.Array('-w,--workspace', [], {
+    arity: 1,
+    description: 'The list of workspaces to sync if `--sync` is set.'
+  });
+
+  parallel = Option.String('-p,--parallel', {
     required: false,
     validator: applyCascade(isNumber(), [
       isInteger(),
@@ -51,6 +62,8 @@ class SetDependencyCommand extends BaseCommand {
   });
 
   async handle ({ project }: { project: Project; workspace: Workspace; locator: Locator; }): Promise<number | void> {
+    let packageList: Descriptor[];
+
     const streamReport = await StreamReport.start({
       configuration: project.configuration,
       stdout: this.context.stdout,
@@ -60,7 +73,7 @@ class SetDependencyCommand extends BaseCommand {
       const checkIfShouldExclude = await createRestrictDependencyVersionExcludesChecker(configuration.get('restrictDependencyVersionExcludes'));
       const fString = createFormatString(configuration);
 
-      const packageList = await report.startTimerPromise('Parsing package list', {}, async () => parsePackageList(
+      packageList = await report.startTimerPromise('Parsing package list', {}, async () => parsePackageList(
         this.packages && this.packages.length > 0
           ? this.packages
           : Array.from(project.configuration.get('dependencyVersionMap').keys())
@@ -115,7 +128,18 @@ class SetDependencyCommand extends BaseCommand {
       });
     });
 
-    return streamReport.exitCode();
+    if (!this.sync) return streamReport.exitCode();
+
+    return await yarnSpawn(
+      null,
+      [
+        'dependency',
+        'sync',
+        packageList.map(descriptor => ['--package', structUtils.stringifyIdent(descriptor)]),
+        this.workspaces
+      ].flat(2),
+      { stdio: [this.context.stdin, this.context.stdout, this.context.stderr] }
+    );
   }
 }
 

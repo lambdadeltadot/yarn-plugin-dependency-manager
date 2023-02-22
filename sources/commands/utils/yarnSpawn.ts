@@ -8,9 +8,9 @@ import { SpawnOptions } from 'node:child_process';
  * @param args the arguments to pass to the yarn command
  * @param options additional options for running the command
  *
- * @return a promise that resolves if successful, otherwise reject with an error
+ * @return a promise that resolves to the return code when successful, otherwise reject with an error
  */
-async function yarnSpawn (workspace: string | Ident = null, args: string | string[] = [], options: SpawnOptions = {}): Promise<void> {
+async function yarnSpawn (workspace: string | Ident = null, args: string | string[] = [], options: SpawnOptions = {}): Promise<number> {
   const { spawn } = await import('node:child_process');
 
   return new Promise((resolve, reject) => {
@@ -28,7 +28,7 @@ async function yarnSpawn (workspace: string | Ident = null, args: string | strin
         errorEncountered = error;
       })
       .on('exit', code => {
-        if (code === 0) return resolve();
+        if (code === 0) return resolve(code);
         return reject(errorEncountered ?? new Error(`process exited with a non-zero code (${code})`));
       });
   });

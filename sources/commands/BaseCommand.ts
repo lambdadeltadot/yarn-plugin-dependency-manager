@@ -15,12 +15,7 @@ abstract class BaseCommand extends YarnBaseCommand {
   async execute (): Promise<number | void> {
     const configuration = await Configuration.find(this.context.cwd, this.context.plugins);
     const projectInfo = await Project.find(configuration, this.context.cwd);
-
-    try {
-      return await this.handle(projectInfo);
-    } catch (error) {
-      return 1;
-    }
+    return await this.handle(projectInfo);
   }
 }
 

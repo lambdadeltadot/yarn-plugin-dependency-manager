@@ -1,6 +1,6 @@
 {
   "name": "yarn-plugin-dependency-manager",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A Yarn v3 plugin that adds hooks and commands that restrict the version of added dependencies.",
   "main": "sources/index.ts",
   "author": "Darwin Arandilla <lambdadeltadot@gmail.com>",

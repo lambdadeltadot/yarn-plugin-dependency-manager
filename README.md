@@ -5,7 +5,7 @@ A Yarn v3 plugin that adds hooks and commands that restrict the version of added
 ## Installation
 
 ```sh
-yarn plugin import https://raw.githubusercontent.com/lambdadeltadot/yarn-plugin-dependency-manager/v0.1.0/bundles/@yarnpkg/plugin-dependency-manager.js
+yarn plugin import https://raw.githubusercontent.com/lambdadeltadot/yarn-plugin-dependency-manager/v0.1.1/bundles/@yarnpkg/plugin-dependency-manager.js
 ```
 
 ## Configs

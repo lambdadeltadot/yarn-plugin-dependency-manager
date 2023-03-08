@@ -22,7 +22,7 @@ async function reportProgressViaCounter<Entry, ReturnValue, ReportType extends R
 
   try {
     for (let index = 0; index < data.length; index += parallel) {
-      const returnedValue = await Promise.all(data.slice(index, parallel).map(each));
+      const returnedValue = await Promise.all(data.slice(index, index + parallel).map(each));
       returnValue.push(...returnedValue);
       progress.tick(parallel);
     }
